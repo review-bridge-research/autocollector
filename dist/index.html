@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocollector JS plugin</title>
+
+
+</head>
+<body>
+<style>
+    * {
+        font-family: monospace;
+    }
+
+    sup {
+        color: red;
+    }
+
+    table tbody tr td {
+        padding: 1px 10px;
+    }
+
+    table tbody tr td.name {
+        color: navy;
+        font-weight: bold;
+    }
+
+    table tbody tr td.type {
+        color: #555;
+    }
+
+    table tbody tr td.format {
+        white-space: nowrap;
+    }
+</style>
+<h1>Autocollector JS plugin</h1>
+
+<h3>How to use:</h3>
+<textarea style="width: 800px; height: 350px; background: #eee; padding: 10px">
+<script src="apiac.min.js"></script>
+<script type="text/javascript">
+bridge.APIac.send({
+    'url': 'https://rs.deintest.com/api/order',
+    "token": "GURTYUWERTWERGSDFG#$%^WERGSDFDFHDFGH3456345DFGHDFGH3456DFGHDFGH=",
+    "orderId": "12346666",
+    "buyerEmail": "autocollector@example.test",
+    "deliveryDate": "2018-02-23 13:23:03",
+    "products": [
+        {
+            "ean": "7311271539223"
+        },
+        {
+            "ean": "8806086676137"
+        }
+    ]
+}, function (status, data) {
+    console.log(status);
+    console.log(data);
+});
+</script>
+</textarea>
+
+<table>
+    <thead>
+    <tr>
+        <td colspan="4">
+            <sup>*</sup> - required parameter
+        </td>
+    </tr>
+    <tr>
+        <th>parameter</th>
+        <th>type</th>
+        <th>format</th>
+        <th>description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr>
+        <td class="name">url</td>
+        <td class="type">string</td>
+        <td class="format">URL format</td>
+        <td>optionally, to which URL the request is sent, by default the URL specified in the plugin is taken</td>
+    </tr>
+
+    <tr>
+        <td class="name">token<sup>*</sup></td>
+        <td class="type">string</td>
+        <td class="format">BASE 64 Encode</td>
+        <td>a token for your store</td>
+    </tr>
+
+    <tr>
+        <td class="name">orderId<sup>*</sup></td>
+        <td class="type">string</td>
+        <td class="format"></td>
+        <td>Unique identifier in your store for ordering</td>
+    </tr>
+
+    <tr>
+        <td class="name">buyerEmail<sup>*</sup></td>
+        <td class="type">string</td>
+        <td class="format">email format</td>
+        <td>buyer email</td>
+    </tr>
+
+    <tr>
+        <td class="name">deliveryDate<sup>*</sup></td>
+        <td class="type">date</td>
+        <td class="format">yyyy-mm-dd hh:ii:ss</td>
+        <td>date of order</td>
+    </tr>
+
+    <tr>
+        <td class="name">products<sup>*</sup></td>
+        <td class="type">array, object</td>
+        <td class="format">[ { "ean": xxxxxxxxxxxxxxx }, ]
+        </td>
+        <td>list of products in the order. "ean" - product identifier</td>
+    </tr>
+    </tbody>
+</table>
+<hr/>
+<p>The plugin makes the request asynchronously. You can process the query result in the callback.</p>
+<ul>
+    <li><strong>status</strong> - how did the request end. Returned values are <strong><i>"error", "success"</i></strong></li>
+    <li><strong>data</strong> - contains the data that the query returns</li>
+</ul>
+
+<p>Before sending a request, validation is done. If the parameters are missing or in the wrong format, the plug-in gives an error and does not send the request.</p>
+
+
+<script type="text/javascript">
+    //    bridge.APIac.send({
+    //        'url': 'https://rs.deintest.com/api/order',
+    //        "orderId": "12346666",
+    //        "buyerEmail": "andkorol@gmail.com",
+    //        "deliveryDate": "2018-02-23 13:23:03",
+    //        "token": "NTZiMDZiZjQ1YjhjNGRlMTIxNDQwZDM5e31rM256ZXI0dHc1NjFkeDdjbGJhMmlnOHE=",
+    //        "products": [
+    //            {
+    //                "ean": "7311271539223"
+    //            },
+    //            {
+    //                "ean": "8806086676137"
+    //            }
+    //        ]
+    //    }, function(status, data){
+    //        console.log(status);
+    //        console.log(data);
+    //    });
+
+</script>
+
+</body>
+</html>
